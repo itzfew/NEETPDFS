@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { auth, database } from '../firebase/firebase';
 import { ref, get, set } from 'firebase/database';
@@ -17,7 +17,25 @@ const Rating = ({ rating }) => {
 
 export default function ProductCard({ product }) {
   const [loading, setLoading] = useState(false);
+  const [cashfreeLoaded, setCashfreeLoaded] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (window.Cashfree) {
+      setCashfreeLoaded(true);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';
+    script.async = true;
+    script.onload = () => setCashfreeLoaded(true);
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const handleBuyNow = async () => {
     if (!auth.currentUser) {
@@ -26,55 +44,61 @@ export default function ProductCard({ product }) {
       return;
     }
 
+    if (!cashfreeLoaded) {
+      toast.error('Payment system is loading, please try again in a moment');
+      return;
+    }
+
     setLoading(true);
     try {
+      // Check if already purchased
       const userRef = ref(database, `users/${auth.currentUser.uid}/purchasedCourses/${product.id}`);
       const snapshot = await get(userRef);
+      
       if (snapshot.exists()) {
         toast.info('You already purchased this course');
-        router.push('/courses/view?product=' + product.id);
+        router.push(`/courses/view?product=${product.id}`);
         return;
       }
 
+      // Create order
       const response = await fetch('/api/orders/create', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: product.price, productId: product.id }),
+        headers: { 
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          amount: product.price, 
+          productId: product.id 
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to create order');
+      const responseData = await response.json();
+
+      if (!response.ok || !responseData.success) {
+        throw new Error(responseData.error || 'Failed to create order');
       }
 
-      const { order_id, payment_session_id } = await response.json();
+      const { payment_session_id, order_id } = responseData.data;
 
-      if (!window.Cashfree) {
-        throw new Error('Cashfree SDK not loaded');
-      }
-
+      // Initialize Cashfree
       const cashfree = new window.Cashfree({
-        env: process.env.NEXT_PUBLIC_CASHFREE_ENV,
+        mode: "production",
       });
 
-      cashfree
-        .checkout({
-          paymentSessionId: payment_session_id,
-          returnUrl: `${window.location.origin}/courses/view?product=${product.id}`,
-        })
-        .then(async () => {
-          await set(userRef, {
-            productId: product.id,
-            orderId: order_id,
-            timestamp: Date.now(),
-          });
-          toast.success('Course purchased successfully!');
-          router.push('/courses/view?product=' + product.id);
-        })
-        .catch((error) => {
-          toast.error('Payment failed: ' + error.message);
-        });
+      // Open checkout
+      cashfree.checkout({
+        paymentSessionId: payment_session_id,
+        redirectTarget: "_self",
+        components: ["order-details", "card", "netbanking", "wallet", "upi", "paylater"],
+      });
+
+      // Note: The success handling will be done via the return_url
+      // The webhook will handle the actual purchase recording
+
     } catch (error) {
-      toast.error('Payment error: ' + error.message);
+      console.error('Payment error:', error);
+      toast.error(error.message || 'Payment failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -95,7 +119,7 @@ export default function ProductCard({ product }) {
           <button
             onClick={handleBuyNow}
             className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:bg-gray-400"
-            disabled={loading}
+            disabled={loading || !cashfreeLoaded}
           >
             {loading ? 'Processing...' : 'Buy Now'}
           </button>
