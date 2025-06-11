@@ -22,12 +22,12 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         order_id: `order_${productId}_${Date.now()}`,
-        order_amount: amount,
+        order_amount: `${amount}`,
         order_currency: 'INR',
         customer_details: {
           customer_id: `cust_${Date.now()}`,
-          customer_email: 'user@example.com', // Replace with dynamic user email if available
-          customer_phone: '9999999999', // Replace with dynamic user phone if available
+          customer_email: 'user@example.com',
+          customer_phone: '9999999999',
         },
         order_meta: {
           return_url: `${req.headers.origin}/courses/view?product=${productId}`,
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     const { order_id, payment_session_id } = await response.json();
     res.status(200).json({ order_id, payment_session_id });
   } catch (error) {
-    console.error('Error creating order:', error);
+    console.error('Error creating order:', error.message);
     res.status(500).json({ error: 'Failed to create order' });
   }
 }
