@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { auth } from '../firebase/firebaseConfig';
+import { auth } from '../firebase/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
@@ -19,7 +19,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success('Logged in successfully');
-      router.push('/');
+      router.push('/courses');
     } catch (error) {
       toast.error('Login failed: ' + error.message);
     } finally {
