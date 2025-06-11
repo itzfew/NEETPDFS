@@ -1,3 +1,4 @@
+// pages/api/orders/create.js
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         order_id: `order_${productId}_${Date.now()}`,
-        order_amount: `${amount}`,
+        order_amount: amount,
         order_currency: 'INR',
         customer_details: {
           customer_id: `cust_${Date.now()}`,
@@ -36,13 +37,14 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to create order');
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to create order');
     }
 
-    const { order_id, payment_session_id } = await response.json();
-    res.status(200).json({ order_id, payment_session_id });
+    const data = await response.json();
+    res.status(200).json(data);
   } catch (error) {
     console.error('Error creating order:', error.message);
-    res.status(500).json({ error: 'Failed to create order' });
+    res.status(500).json({ error: error.message || 'Failed to create order' });
   }
 }
