@@ -48,13 +48,12 @@ export default function ProductCard({ product }) {
 
       const { order_id, payment_session_id } = await response.json();
 
-      // Use global Cashfree object from CDN
       if (!window.Cashfree) {
         throw new Error('Cashfree SDK not loaded');
       }
 
       const cashfree = new window.Cashfree({
-        env: process.env.NEXT_PUBLIC_CASHFREE_ENV, // 'sandbox' or 'production'
+        env: process.env.NEXT_PUBLIC_CASHFREE_ENV,
       });
 
       cashfree
