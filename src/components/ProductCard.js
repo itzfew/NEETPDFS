@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { auth, database } from '../firebase/firebaseConfig';
+import { auth, database } from '../firebase/firebase';
 import { ref, get, set } from 'firebase/database';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
