@@ -1,0 +1,6 @@
+[
+  { "id": "pw", "name": "Pw", "description": "Physics Wallah study materials", "price": 10, "rating": 4.5 },
+  { "id": "akash", "name": "Akash", "description": "Akash Institute test series", "price": 10, "rating": 4.7 },
+  { "id": "neet", "name": "NEET", "description": "NEET preparation courses", "price": 5, "rating": 4.3 },
+  { "id": "jee", "name": "JEE", "description": "JEE Main & Advanced materials", "price": 5, "rating": 4.6 }
+]
