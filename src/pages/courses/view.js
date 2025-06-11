@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { auth, database } from '../../firebase/firebaseConfig';
+import { auth, database } from '../../firebase/firebase';
 import { ref, get } from 'firebase/database';
 import { toast } from 'react-toastify';
 import Navbar from '../../components/Navbar';
@@ -160,7 +160,7 @@ export default function View() {
       document.getElementById('status').innerHTML = '';
       return;
     }
-    document.getElementById('status').innerHTML = '<div class="text-blue-600">Searching...</div>';
+    document.getElementById('status').innerHTML = '<div className="text-blue-600">Searching...</div>';
     let found = false;
 
     const file = files.find((f) => f.pdfId === pdfId);
@@ -172,7 +172,7 @@ export default function View() {
         if (pageNum > pdf.numPages) {
           document.getElementById('status').innerHTML = found
             ? ''
-            : '<div class="text-red-500">No matches found</div>';
+            : '<div className="text-red-500">No matches found</div>';
           return;
         }
 
@@ -182,7 +182,7 @@ export default function View() {
             if (text.includes(query.toLowerCase()) && !found) {
               found = true;
               document.getElementById('pdfViewer').children[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
-              document.getElementById('status').innerHTML = `<div class="text-green-500">Match found on page ${pageNum}</div>`;
+              document.getElementById('status').innerHTML = `<div className="text-green-500">Match found on page ${pageNum}</div>`;
             }
             searchPage(pageNum + 1);
           });
@@ -196,7 +196,7 @@ export default function View() {
   const loadPDF = (pdfId) => {
     const file = files.find((f) => f.pdfId === pdfId);
     if (!file) {
-      document.getElementById('status').innerHTML = '<div class="text-red-500">PDF not found</div>';
+      document.getElementById('status').innerHTML = '<div className="text-red-500">PDF not found</div>';
       document.getElementById('loading').style.display = 'none';
       return;
     }
@@ -217,7 +217,7 @@ export default function View() {
       })
       .catch((error) => {
         console.error('Error loading PDF:', error);
-        document.getElementById('status').innerHTML = '<div class="text-red-500">Failed to load PDF</div>';
+        document.getElementById('status').innerHTML = '<div className="text-red-500">Failed to load PDF</div>';
         document.getElementById('downloadSection').style.display = 'block';
         document.getElementById('downloadLink').href = file.url;
         document.getElementById('pdfViewer').style.display = 'none';
@@ -322,16 +322,15 @@ export default function View() {
               </a>
             </div>
           </div>
-          <div id="loading" className="flex justify-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500">
-</div>
+          <div id="loading" className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
           </div>
           <div
             id="pdfViewer"
-            className="bg-white rounded-lg shadow-lg p-4 hidden max-h-[calc(100vh-120px)] overflow-y-auto snap-y snap-mandatory"
+            className="bg-white rounded-lg shadow-md p-4 hidden max-h-[calc(100vh-120px)] overflow-y-auto snap-y snap-mandatory"
             style={{ scrollbarWidth: 'none' }}
           ></div>
-          <div id="downloadSection" className="bg-white rounded-lg shadow-lg p-6 hidden">
+          <div id="downloadSection" className="bg-white rounded-lg shadow-md p-6 hidden">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Unable to Load PDF</h2>
             <p className="text-gray-600 mb-4">The PDF could not be loaded. Please download it instead.</p>
             <a
@@ -342,7 +341,7 @@ export default function View() {
               <i className="fas fa-download mr-2"></i> Download PDF
             </a>
           </div>
-          <div id="state" className="text-center mt-4"></div>
+          <div id="status" className="text-center mt-4"></div>
           <div id="pageInfo" className="hidden fixed bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full"></div>
           <div className="mt-6">
             <h3 className="text-xl font-semibold mb-4">Course Files</h3>
@@ -356,7 +355,7 @@ export default function View() {
                   {(folders[product][subfolder] || []).map((file) => (
                     <li
                       key={file.pdfId}
-                      className="flex justify-between items-center bg-gray-100 p-2 rounded hover:bg-gray-200 cursor-pointer"
+                      className="flex items-center justify-between bg-gray-100 p-2 rounded hover:bg-gray-200 cursor-pointer"
                       onClick={() => {
                         loadPDF(file.pdfId);
                         searchQuery && searchPDF(searchQuery, file.pdfId);
