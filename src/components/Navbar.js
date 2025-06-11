@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { auth } from '../firebase/firebaseConfig';
+import { auth } from '../firebase/firebase';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
@@ -29,8 +29,8 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-indigo-600">
-          Course Viewer
+        <Link href="/courses" className="text-2xl font-bold text-indigo-600">
+          NEETPDFS
         </Link>
         <div className="space-x-4">
           {user ? (
