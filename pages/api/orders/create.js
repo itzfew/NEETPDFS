@@ -1,19 +1,34 @@
-// pages/api/orders/create.js
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle OPTIONS request for CORS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ 
+      success: false,
+      error: 'Method not allowed' 
+    });
   }
 
   const { amount, productId } = req.body;
 
   if (!amount || !productId) {
-    return res.status(400).json({ error: 'Amount and productId are required' });
+    return res.status(400).json({ 
+      success: false,
+      error: 'Amount and productId are required' 
+    });
   }
 
   try {
-    const response = await fetch('https://api.cashfree.com/pg/orders', {
+    const cashfreeResponse = await fetch('https://api.cashfree.com/pg/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,20 +46,29 @@ export default async function handler(req, res) {
           customer_phone: '9999999999',
         },
         order_meta: {
-          return_url: `${req.headers.origin}/courses/view?product=${productId}`,
+          return_url: `${req.headers.origin}/courses/view?product=${productId}&status=:payment_status`,
+          notify_url: `${req.headers.origin}/api/orders/webhook`,
         },
       }),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to create order');
+    const responseData = await cashfreeResponse.json();
+
+    if (!cashfreeResponse.ok) {
+      console.error('Cashfree API Error:', responseData);
+      throw new Error(responseData.message || 'Failed to create order');
     }
 
-    const data = await response.json();
-    res.status(200).json(data);
+    return res.status(200).json({
+      success: true,
+      data: responseData
+    });
+
   } catch (error) {
     console.error('Error creating order:', error.message);
-    res.status(500).json({ error: error.message || 'Failed to create order' });
+    return res.status(500).json({ 
+      success: false,
+      error: error.message || 'Failed to create order' 
+    });
   }
 }
