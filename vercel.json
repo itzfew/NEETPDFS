@@ -11,7 +11,8 @@
     "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "@firebase-messaging-sender-id",
     "NEXT_PUBLIC_FIREBASE_APP_ID": "@firebase-app-id",
     "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID": "@firebase-measurement-id",
-    "NEXT_PUBLIC_RAZORPAY_KEY_ID": "@razorpay-key-id",
-    "RAZORPAY_KEY_SECRET": "@razorpay-key-secret"
+    "NEXT_PUBLIC_CASHFREE_APP_ID": "@cashfree-app-id",
+    "CASHFREE_API_SECRET": "@cashfree-api-secret",
+    "NEXT_PUBLIC_CASHFREE_ENV": "@cashfree-env"
   }
 }
