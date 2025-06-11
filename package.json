@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cashfree/js-sdk": "^1.0.2",
     "firebase": "^9.23.0",
     "next": "^14.2.3",
     "react": "^18.2.0",
