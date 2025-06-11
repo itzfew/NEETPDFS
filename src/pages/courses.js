@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { database } from '../firebase/firebaseConfig';
 import { ref, get } from 'firebase/database';
 
-export default function Home() {
+export default function Courses() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,8 +24,8 @@ export default function Home() {
           setProducts(courses);
         }
         setIsLoading(false);
-      } catch (error) {
-        console.error('Error loading courses:', error);
+      } catch (err) {
+        console.error('Error loading courses:', err);
         setIsLoading(false);
       }
     };
@@ -37,9 +37,9 @@ export default function Home() {
       <Navbar />
       <ToastContainer />
       <main className="flex-grow">
-        <div className="hero bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
+        <div className="hero bg-gradient-to-r from-indigo-600 to-blue-600 text-white py-4">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Discover Your Next Favorite Course</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Discover Your Course</h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto">
               Explore our curated collection of premium study materials to excel in your learning journey.
             </p>
@@ -47,8 +47,8 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 py-12">
           {isLoading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
             </div>
           ) : (
             <>
