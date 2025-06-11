@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://sandbox.cashfree.com/pg/orders', {
+    const response = await fetch('https://api.cashfree.com/pg/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,8 +26,8 @@ export default async function handler(req, res) {
         order_currency: 'INR',
         customer_details: {
           customer_id: `cust_${Date.now()}`,
-          customer_email: 'user@example.com', // Can be dynamic
-          customer_phone: '9999999999', // Can be dynamic
+          customer_email: 'user@example.com', // Replace with dynamic user email if available
+          customer_phone: '9999999999', // Replace with dynamic user phone if available
         },
         order_meta: {
           return_url: `${req.headers.origin}/courses/view?product=${productId}`,
@@ -41,8 +41,8 @@ export default async function handler(req, res) {
 
     const { order_id, payment_session_id } = await response.json();
     res.status(200).json({ order_id, payment_session_id });
-  } catch (err) {
-    console.error('Error creating order:', err);
+  } catch (error) {
+    console.error('Error creating order:', error);
     res.status(500).json({ error: 'Failed to create order' });
   }
 }
