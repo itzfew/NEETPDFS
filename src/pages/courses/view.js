@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { auth, database } from '../firebase/firebaseConfig';
+import { auth, database } from '../../firebase/firebaseConfig';
 import { ref, get } from 'firebase/database';
 import { toast } from 'react-toastify';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import Link from 'next/link';
 
 export default function View() {
@@ -16,11 +16,11 @@ export default function View() {
   const [searchActive, setSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
-  const { course: courseId } = router.query;
+  const { product } = router.query;
   let pdfDoc = null;
 
   useEffect(() => {
-    if (!courseId) return;
+    if (!product) return;
 
     const checkAccessAndLoadFiles = async () => {
       if (!auth.currentUser) {
@@ -30,24 +30,21 @@ export default function View() {
       }
 
       try {
-        // Check if user has purchased the course
-        const userRef = ref(database, `users/${auth.currentUser.uid}/purchasedCourses/${courseId}`);
+        const userRef = ref(database, `users/${auth.currentUser.uid}/purchasedCourses/${product}`);
         const userSnapshot = await get(userRef);
         setHasAccess(userSnapshot.exists());
 
-        // Load course details
-        const courseRef = ref(database, `courses/${courseId}`);
+        const courseRef = ref(database, `courses/${product}`);
         const courseSnapshot = await get(courseRef);
         if (courseSnapshot.exists()) {
           setCourse(courseSnapshot.val());
         }
 
-        // Load files
         const filesRef = ref(database, 'files');
         const filesSnapshot = await get(filesRef);
         if (filesSnapshot.exists()) {
           const allFiles = Object.values(filesSnapshot.val()).filter(
-            (file) => file.folder === courseId
+            (file) => file.folder === product
           );
           setFiles(allFiles);
         }
@@ -59,7 +56,7 @@ export default function View() {
     };
 
     checkAccessAndLoadFiles();
-  }, [courseId]);
+  }, [product]);
 
   const renderPages = (container) => {
     container.innerHTML = '';
@@ -251,7 +248,7 @@ export default function View() {
             <p className="text-gray-600 mb-6">
               You need to purchase the {course?.name} course to access its content.
             </p>
-            <Link href="/" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+            <Link href="/courses" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
               Purchase Now
             </Link>
           </div>
@@ -325,8 +322,9 @@ export default function View() {
               </a>
             </div>
           </div>
-          <div id="loading" className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+          <div id="loading" className="flex justify-center justify-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500">
+</div>
           </div>
           <div
             id="pdfViewer"
@@ -344,18 +342,18 @@ export default function View() {
               <i className="fas fa-download mr-2"></i> Download PDF
             </a>
           </div>
-          <div id="status" className="text-center mt-4"></div>
+          <div id="state" className="text-center mt-4"></div>
           <div id="pageInfo" className="hidden fixed bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full"></div>
           <div className="mt-6">
             <h3 className="text-xl font-semibold mb-4">Course Files</h3>
-            {Object.keys(folders[courseId] || {}).map((subfolder) => (
+            {Object.keys(folders[product] || []).map((subfolder) => (
               <div key={subfolder} className="mb-4">
                 <h4 className="text-lg font-medium flex items-center">
                   <i className="fas fa-folder mr-2 text-yellow-500"></i>
                   {subfolder === '_files' ? 'Files' : subfolder}
                 </h4>
                 <ul className="ml-6 space-y-2">
-                  {(folders[courseId][subfolder] || []).map((file) => (
+                  {(folders[product][subfolder] || []).map((file) => (
                     <li
                       key={file.pdfId}
                       className="flex justify-between items-center bg-gray-100 p-2 rounded hover:bg-gray-200 cursor-pointer"
@@ -381,7 +379,7 @@ export default function View() {
       </main>
       <Footer />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
-      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script src="https://cdn.cashfree.com/js/cashfree-1.0.2.min.js"></script>
     </div>
   );
 }
