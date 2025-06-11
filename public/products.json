@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "name": "Akash Modules – Class 11th,12th,Dropper",
+    "description": "Comprehensive Akash Institute modules for Class 11th,12th,Dropper perfect for NEET, Boards, and JEE Mains preparation. Includes detailed theory, exercises, and fully-solved solutions.",
+    "price": 10,
+    "image": "images/akash-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=akash-modules",
+    "features": [
+      "All chapters of Class 11th,12th,",
+      "Detailed theory explanations",
+      "Extensive exercises with solutions",
+      "Latest version for NEET, Boards & JEE"
+    ],
+    "rating": 4.7,
+    "category": "NEET, BOARDS, JEE MAINS",
+    "author": "Akash Institute"
+  },
+  {
+    "id": 2,
+    "name": "Allen Modules – Class 11th,12th,Dropper",
+    "description": "Latest Allen Institute modules for Class 11th,12th,Dropper students, ideal for NEET, Boards, and JEE Mains. Covers theory, exercises, and solutions in a structured format.",
+    "price": 10,
+    "image": "images/allen-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=allen-modules",
+    "features": [
+      "Complete Class 11th,12th syllabus",
+      "High-quality theory content",
+      "Practice problems with solutions",
+      "Optimized for NEET, Boards & JEE"
+    ],
+    "rating": 4.8,
+    "category": "NEET, BOARDS, JEE MAINS",
+    "author": "Allen Institute"
+  },
+  {
+    "id": 3,
+    "name": "10 Full Syllabus Mock Tests by Dr. Anand Mani",
+    "description": "A set of 10 full syllabus mock tests curated by Dr. Anand Mani, ideal for final NEET revision.",
+    "price": 10,
+    "image": "images/mock-anand.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=10-full-syllabus-mock-anand",
+    "features": [
+      "Covers full NEET syllabus",
+      "Real-exam pattern questions",
+      "Time-based test practice",
+      "Solutions & answer key included"
+    ],
+    "rating": 4.8,
+    "category": "NEET",
+    "author": "Dr. Anand Mani"
+  },
+  {
+    "id": 4,
+    "name": "Allen 11 Years PYQs",
+    "description": "Allen's 11 years of previous year NEET questions categorized by subject and topic.",
+    "price": 10,
+    "image": "images/allen-pyqs-11.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=allen-11-years-pyq",
+    "features": [
+      "Covers NEET PYQs from last 11 years",
+      "Topic-wise arrangement",
+      "Fully solved with detailed explanations",
+      "Great for concept revision"
+    ],
+    "rating": 4.6,
+    "category": "NEET",
+    "author": "Allen Institute"
+  },
+  {
+    "id": 5,
+    "name": "Inorganic Chemistry Module – Unacademy",
+    "description": "Detailed inorganic chemistry theory and practice module by Unacademy for NEET and JEE.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=inorganic-chemistry-module",
+    "features": [
+      "Chapter-wise inorganic theory",
+      "NEET/JEE level practice questions",
+      "Easy to revise tables and points",
+      "Clear conceptual approach"
+    ],
+    "rating": 4.5,
+    "category": "NEET, JEE MAINS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 6,
+    "name": "Organic Chemistry Module – Unacademy",
+    "description": "Complete organic chemistry module from Unacademy with mechanisms, questions, and tricks.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=organic-chemistry-module",
+    "features": [
+      "Mechanism-focused chapters",
+      "Trick-based concept coverage",
+      "Topic-wise NEET/JEE questions",
+      "Summary tables for quick revision"
+    ],
+    "rating": 4.7,
+    "category": "NEET, JEE MAINS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 7,
+    "name": "Physical Chemistry Module – Unacademy",
+    "description": "Physical chemistry module covering numerical-based and conceptual questions for NEET/JEE.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=physical-chemistry-module",
+    "features": [
+      "Numerical-centric practice",
+      "Concept boosters and formula lists",
+      "Targeted NEET & JEE level coverage",
+      "End-of-chapter mock sets"
+    ],
+    "rating": 4.6,
+    "category": "NEET, JEE MAINS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 8,
+    "name": "11th Biology Module – Unacademy",
+    "description": "Unacademy's 11th standard biology module designed for NEET preparation.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=biology-module-11th",
+    "features": [
+      "NCERT-based content",
+      "Diagrams & flowcharts included",
+      "Topic-wise MCQs",
+      "Quick revision sections"
+    ],
+    "rating": 4.5,
+    "category": "NEET, BOARDS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 9,
+    "name": "12th Biology Module – Unacademy",
+    "description": "Covers full 12th standard biology with exam-focused topics and MCQs.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=biology-module-12th",
+    "features": [
+      "Detailed NCERT explanation",
+      "Diagrams and key points",
+      "Topic-wise MCQs with keys",
+      "Ideal for NEET & Boards"
+    ],
+    "rating": 4.6,
+    "category": "NEET, BOARDS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 10,
+    "name": "12th Physics Module – Unacademy",
+    "description": "Advanced-level 12th physics module from Unacademy with solved numericals.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=physics-module-12th",
+    "features": [
+      "Board & NEET-level theory",
+      "Solved numericals",
+      "Chapter-wise problems",
+      "Conceptual focus"
+    ],
+    "rating": 4.6,
+    "category": "NEET, BOARDS, JEE MAINS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 11,
+    "name": "11th Physics Module – Unacademy",
+    "description": "Comprehensive 11th physics module by Unacademy aligned with NEET/JEE requirements.",
+    "price": 10,
+    "image": "images/Unacademy-modules.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=physics-module-11th",
+    "features": [
+      "In-depth concept theory",
+      "MCQs and derivations",
+      "NEET/JEE preparation focused",
+      "Includes graphs and formulae"
+    ],
+    "rating": 4.5,
+    "category": "NEET, BOARDS, JEE MAINS",
+    "author": "Unacademy"
+  },
+  {
+    "id": 12,
+    "name": "Allen Physics Handbook",
+    "description": "Quick reference Physics handbook by Allen for NEET/JEE revision.",
+    "price": 15,
+    "image": "images/allen-handbook.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=allen-physics-handbook",
+    "features": [
+      "Compact summary notes",
+      "Key formulas and shortcuts",
+      "Ideal for last-minute revision",
+      "Covers full syllabus"
+    ],
+    "rating": 4.6,
+    "category": "NEET, JEE MAINS",
+    "author": "Allen Institute"
+  },
+  {
+    "id": 13,
+    "name": "Allen Chemistry Handbook",
+    "description": "Handy chemistry handbook from Allen to boost NEET/JEE preparation.",
+    "price": 15,
+    "image": "images/allen-handbook.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=allen-chemistry-handbook",
+    "features": [
+      "Quick revision points",
+      "Important reaction mechanisms",
+      "Shortcuts and memory aids",
+      "Suitable for NEET & JEE"
+    ],
+    "rating": 4.5,
+    "category": "NEET, JEE MAINS",
+    "author": "Allen Institute"
+  },
+  {
+    "id": 14,
+    "name": "Allen Biology Handbook",
+    "description": "Allen's biology handbook containing high-yield NEET topics in condensed form.",
+    "price": 15,
+    "image": "images/allen-handbook.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=allen-biology-handbook",
+    "features": [
+      "NCERT-aligned notes",
+      "Diagrams and tables",
+      "Very useful for quick revision",
+      "Ideal for NEET aspirants"
+    ],
+    "rating": 4.7,
+    "category": "NEET",
+    "author": "Allen Institute"
+  },
+  {
+    "id": 15,
+    "name": "Allen Maths Handbook",
+    "description": "Maths handbook by Allen for JEE aspirants to revise formulas and tricks.",
+    "price": 15,
+    "image": "images/allen-handbook.jpg",
+    "telegramLink": "https://t.me/Material_eduhubkmrbot?start=allen-maths-handbook",
+    "features": [
+      "Chapter-wise formula lists",
+      "Conceptual clarity with examples",
+      "Perfect for last-minute JEE prep",
+      "Concise and to the point"
+    ],
+    "rating": 4.6,
+    "category": "JEE MAINS",
+    "author": "Allen Institute"
+  }
+]
